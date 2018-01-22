@@ -64,6 +64,12 @@ var Datetime = createClass({
 		return state;
 	},
 
+	setViewMode: function( mode ) {
+		this.setState({
+			currentView: mode
+		});
+	},
+
 	getStateFromProps: function( props ) {
 		var formats = this.getFormats( props ),
 			date = props.value || props.defaultValue,

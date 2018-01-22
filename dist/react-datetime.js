@@ -1,5 +1,5 @@
 /*
-react-datetime v2.11.0
+react-datetime v2.11.1
 https://github.com/YouCanBookMe/react-datetime
 MIT: https://github.com/YouCanBookMe/react-datetime/raw/master/LICENSE
 */
@@ -125,6 +125,12 @@ return /******/ (function(modules) { // webpackBootstrap
 			return state;
 		},
 
+		setViewMode: function( mode ) {
+			this.setState({
+				currentView: mode
+			});
+		},
+
 		getStateFromProps: function( props ) {
 			var formats = this.getFormats( props ),
 				date = props.value || props.defaultValue,
@@ -213,7 +219,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 
 			if ( updatedState.open === undefined ) {
-				if ( this.props.closeOnSelect && this.state.currentView !== 'time' ) {
+				if ( typeof nextProps.open !== 'undefined' ) {
+					updatedState.open = nextProps.open;
+				} else if ( this.props.closeOnSelect && this.state.currentView !== 'time' ) {
 					updatedState.open = false;
 				} else {
 					updatedState.open = this.state.open;
